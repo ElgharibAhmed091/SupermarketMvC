@@ -1,0 +1,50 @@
+﻿@* @{
+    var isAdmin = User.IsInRole("Admin");
+}
+ *@
+@model WebApplication1.Models.Category
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+@* @if (isAdmin) *@
+{
+    <h1 class="text-center mt-4">إضافة فئة جديدة</h1>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg border-0 rounded-3">
+                    <div class="card-body p-4">
+                        <h4 class="card-title text-center mb-4">تفاصيل الفئة</h4>
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="form-group mb-3">
+                                <label asp-for="Name" class="form-label fw-bold"></label>
+                                <input asp-for="Name" class="form-control rounded-pill" placeholder="اسم الفئة" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary rounded-pill">إضافة الفئة</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3">
+                    <a asp-action="Index" class="btn btn-link">الرجوع إلى القائمة</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+    @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+}

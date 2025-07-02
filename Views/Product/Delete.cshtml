@@ -1,0 +1,56 @@
+﻿@* @{
+    var isAdmin = User.IsInRole("Admin");
+} *@
+@model WebApplication1.Models.Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+}@* if (isAdmin) *@
+{
+
+    <div class="container mt-5">
+        <h1 class="text-center text-danger">@ViewData["Title"]</h1>
+        <h3 class="text-center text-warning mb-4">هل أنت متأكد أنك تريد حذف هذا المنتج؟</h3>
+
+        <div class="card shadow-lg p-4">
+            <h4 class="card-title text-primary">تفاصيل المنتج</h4>
+            <hr />
+
+            <dl class="row mb-4">
+                <!-- Display Product Name -->
+                <dt class="col-sm-3 fw-bold">اسم المنتج:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                <!-- Display Product Image -->
+                <dt class="col-sm-3 fw-bold">صورة المنتج:</dt>
+                <dd class="col-sm-9">
+                    @if (!string.IsNullOrEmpty(Model.img))
+                    {
+                        <img src="@Model.img" alt="Product Image" class="img-thumbnail" style="max-height: 150px;" />
+                    }
+                    else
+                    {
+                        <span>لا توجد صورة</span>
+                    }
+                </dd>
+
+                <!-- Display Product Price -->
+                <dt class="col-sm-3 fw-bold">السعر:</dt>
+                <dd class="col-sm-9">$@Html.DisplayFor(model => model.Price)</dd>
+
+                <!-- Display Product Category -->
+                <dt class="col-sm-3 fw-bold">الفئة:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Category.CategoryId)</dd>
+            </dl>
+
+            <!-- Delete Form -->
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-danger rounded-pill me-3">حذف</button>
+                    <a asp-action="Index" class="btn btn-secondary rounded-pill">العودة للقائمة</a>
+                </div>
+            </form>
+        </div>
+    </div>
+}

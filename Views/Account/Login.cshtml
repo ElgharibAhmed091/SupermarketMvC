@@ -1,0 +1,43 @@
+﻿@model WebApplication1.ViewModel.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">تسجيل الدخول</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4">
+                <h4 class="card-title text-primary text-center">تسجيل الدخول إلى حسابك</h4>
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- Email Field -->
+                    <div class="form-group mb-4">
+                        <label for="Email" class="form-label">البريد الإلكتروني</label>
+                        <input asp-for="Email" class="form-control" placeholder="أدخل بريدك الإلكتروني" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group mb-4">
+                        <label for="Password" class="form-label">كلمة المرور</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="أدخل كلمة المرور" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <!-- Remember Me Field -->
+                    <div class="form-group mb-4">
+                        <label class="form-check-label">
+                            <input asp-for="RememberMe" class="form-check-input" /> تذكرني
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

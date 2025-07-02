@@ -1,0 +1,67 @@
+﻿@* @{
+    var isAdmin = User.IsInRole("Admin");
+} *@
+@model WebApplication1.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+@* @if (isAdmin) *@
+
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+    <h4 class="text-center mb-4">إضافة منتج جديد</h4>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- Name Field -->
+                    <div class="form-group mb-4">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" placeholder="أدخل اسم المنتج" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <!-- Image Field -->
+                    <div class="form-group mb-4">
+                        <label asp-for="img" class="form-label">رابط صورة المنتج</label>
+                        <input asp-for="img" class="form-control" placeholder="أدخل رابط صورة المنتج من الإنترنت" />
+                        <span asp-validation-for="img" class="text-danger"></span>
+                    </div>
+
+                    <!-- Price Field -->
+                    <div class="form-group mb-4">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input asp-for="Price" class="form-control" placeholder="أدخل سعر المنتج" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <!-- Category Field -->
+                    <div class="form-group mb-4">
+                        <label asp-for="CategoryId" class="form-label"></label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group text-center">
+                        <input type="submit" value="إضافة المنتج" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+
+    @section Scripts {
+    @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+}
